@@ -8,15 +8,15 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 # Función para descargar y leer el archivo CSV desde un ZIP
-@st.cache
+@st.cache_data
 def load_csv_from_zip(zip_url, csv_filename):
     response = requests.get(zip_url)
     zip_file = zipfile.ZipFile(io.BytesIO(response.content))
     with zip_file.open(csv_filename) as csv_file:
-        return pd.read_csv(csv_file)
+        return pd.read_csv(csv_file, low_memory=False)
 
 # Función para descargar y leer el archivo GeoJSON desde un ZIP
-@st.cache
+@st.cache_data
 def load_geojson_from_zip(zip_url, geojson_filename):
     response = requests.get(zip_url)
     zip_file = zipfile.ZipFile(io.BytesIO(response.content))
