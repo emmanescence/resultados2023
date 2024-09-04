@@ -107,3 +107,4 @@ ax.set_ylabel('Latitud', fontsize=12)
 st.pyplot(fig)
 
 
+
