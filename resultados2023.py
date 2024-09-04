@@ -13,7 +13,7 @@ def load_csv_from_zip(zip_url, csv_filename):
     response = requests.get(zip_url)
     zip_file = zipfile.ZipFile(io.BytesIO(response.content))
     with zip_file.open(csv_filename) as csv_file:
-        return pd.read_csv(csv_file, low_memory=False)
+        return pd.read_csv(csv_file, usecols=['distrito_nombre', 'circuito_id', 'cargo_nombre', 'agrupacion_nombre', 'votos_cantidad'], low_memory=False)
 
 # Función para descargar y leer el archivo GeoJSON desde un ZIP
 @st.cache_data
@@ -90,7 +90,7 @@ def get_color(agrupacion_nombre):
         return 'grey'
 
 # Agregar columna de color al GeoDataFrame
-geo_data_combined['color'] = geo_data_combined.apply(lambda row: get_color(df_resultado.loc[df_resultado['agrupacion_nombre'] == row['agrupacion_nombre'], 'agrupacion_nombre'].values[0] if not df_resultado[df_resultado['agrupacion_nombre'] == row['agrupacion_nombre']].empty else 'Otro'), axis=1)
+geo_data_combined['color'] = geo_data_combined['agrupacion_nombre'].apply(get_color)
 
 # Mostrar mapa
 fig, ax = plt.subplots(figsize=(12, 10))
@@ -105,6 +105,4 @@ ax.set_ylabel('Latitud', fontsize=12)
 
 # Mostrar el mapa en Streamlit
 st.pyplot(fig)
-
-
 
