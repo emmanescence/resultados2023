@@ -106,3 +106,4 @@ ax.set_ylabel('Latitud', fontsize=12)
 # Mostrar el mapa en Streamlit
 st.pyplot(fig)
 
+
