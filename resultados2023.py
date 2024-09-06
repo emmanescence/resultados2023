@@ -129,3 +129,4 @@ def actualizar_mapa(cabecera, cargo_nombre, circuito):
 
 # Ejecutar la función con los valores seleccionados
 actualizar_mapa(cabecera, cargo_nombre, circuito)
+
