@@ -7,7 +7,7 @@ import zipfile
 import io
 
 # Descargar y cargar el archivo CSV con los resultados electorales
-zip_url_resultados = 'https://www.argentina.gob.ar/sites/default/files/2023_generales_1.zip'
+zip_url_resultados = 'https://www.argentina.gob.ar/sites/default/files/2023_generales_1.zip' #'https://www.argentina.gob.ar/sites/default/files/2023_generales_1.zip' 
 response = requests.get(zip_url_resultados)
 zip_file_resultados = zipfile.ZipFile(io.BytesIO(response.content))
 
